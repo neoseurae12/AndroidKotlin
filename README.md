@@ -55,9 +55,9 @@
 
 ### 한 걸음 더
 1. 화면의 방향이 변경된다면 어떻게 해야할까요?
-	i. 값을 유지하려면 어떻게 해야할까요?
+	- 값을 유지하려면 어떻게 해야할까요?
 		- part1-chapter3 강의 참고
-	ii. 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까요?
+	- 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까요?
 		- numberTextView 의 height 값을 지정하지 말고, weight 를 이용
 2. weight 를 넣을 때 dimension 에 왜 0dp 를 넣으라고 했을까요?
 	- LinearLayout 의 weight 값이 잘 적용되기 위해선, orientation 에 따라, width 또는 height 의 값이 0dp 여야 함
