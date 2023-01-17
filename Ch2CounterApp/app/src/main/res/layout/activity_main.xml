@@ -12,7 +12,7 @@
         android:id="@+id/numberTextView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:text="100"
+        android:text="0"
         android:textSize="100sp"
         android:textColor="@color/blue"
         android:textStyle="bold|italic"

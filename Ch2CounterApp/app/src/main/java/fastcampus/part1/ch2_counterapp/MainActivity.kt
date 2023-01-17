@@ -15,12 +15,19 @@ class MainActivity : AppCompatActivity() {
         val resetButton = findViewById<Button>(R.id.resetButton)
         val plusButton = findViewById<Button>(R.id.plusButton)
 
+        var number = 0  // "var"로 지정함
+
+
         resetButton.setOnClickListener {
-            Log.d("onClick", "리셋 버튼이 클릭 됐습니다!")
+            number = 0
+            numberTextView.text = number.toString()
+            Log.d("onClick", "리셋 된 숫자는 $number")
         }
 
         plusButton.setOnClickListener {
-            Log.i("onClick", "플러스 버튼이 클릭 됐습니다!")
+            number++
+            numberTextView.text = number.toString()
+            Log.d("onClick", "증가 된 숫자는 $number")
         }
     }
 }
