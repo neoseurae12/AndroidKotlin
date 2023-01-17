@@ -24,3 +24,43 @@
 - Companin Object 동반객체
   - Java 의 static 과 동일한 역할
   - 클래스 내에 하나만 생성할 수 있음
+
+## App-1) 숫자세기 앱
+
+<사진>
+
+### 구현 기능
+- '+' 버튼을 클릭 시, 숫자를 1씩 올리기
+- 초기화 버튼을 클릭 시, 숫자를 0으로 변경하기
+
+### 학습 목표
+- 간단한 기능을 구현하고, UI 를 그릴 수 있다
+	- LinearLayout 을 이용하여 간단한 UI 를 그릴 수 있다.
+	- Activity 를 통해 사용자 입력에 대한 출력을 보여줄 수 있다.
+	☞ 사용자가 상호작용하는 곳은 '그래픽'이다!
+- UI
+	- LinearLayout
+	- TextView
+	- Button
+	- dp, sp
+- Kotlin
+	- val, var
+	- 복합대입 연산자 +=
+- Android
+	- Activity
+	- R 파일
+	- findViewById
+	- setOnClickListener
+	- Log
+
+### 한 걸음 더
+1. 화면의 방향이 변경된다면 어떻게 해야할까요?
+	- 값을 유지하려면 어떻게 해야할까요?
+		- part1-chapter3 강의 참고
+	- 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까요?
+		- numberTextView 의 height 값을 지정하지 말고, weight 를 이용
+2. weight 를 넣을 때 dimension 에 왜 0dp 를 넣으라고 했을까요?
+	- LinearLayout 의 weight 값이 잘 적용되기 위해선, orientation 에 따라, width 또는 height 의 값이 0dp 여야 함
+		- orientation: vertical -> layout_height=“0dp”
+		- orientation: horizontal -> layout_width="0dp"
+	- https://developer.android.com/guide/topics/ui/layout/linear?hl=ko#Weight
