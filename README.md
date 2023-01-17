@@ -63,4 +63,4 @@
 	- LinearLayout 의 weight 값이 잘 적용되기 위해선, orientation 에 따라, width 또는 height 의 값이 0dp 여야 함
 		- orientation: vertical -> layout_height=“0dp”
 		- orientation: horizontal -> layout_width="0dp"
-	- https://developer.android.com/guide/topics/ui/layout/linear?hl=ko#Weight
+	- https://developer.android.com/develop/ui/views/layout/linear#Weight
