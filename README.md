@@ -39,24 +39,24 @@
 	- Activity 를 통해 사용자 입력에 대한 출력을 보여줄 수 있다.
 	☞ 사용자가 상호작용하는 곳은 '그래픽'이다!
 - UI
-	- LinearLayout
-	- TextView
-	- Button
+	- LinearLayout (orientation, weight)
+	- TextView (size, color, ...)
+	- Button (margin, padding, gravity)
 	- dp, sp
 - Kotlin
 	- val, var
 	- 복합대입 연산자 +=
 - Android
-	- Activity
-	- R 파일
-	- findViewById
+	- Activity (user와 상호작용하는 진입점, lifecycle)
+	- R 파일 (id 목록)
+	- findViewById (R 파일 --> Kotlin으로 id 가져옴)
 	- setOnClickListener
-	- Log
+	- Log (중간 확인)
 
 ### 한 걸음 더
 1. 화면의 방향이 변경된다면 어떻게 해야할까요?
 	- 값을 유지하려면 어떻게 해야할까요?
-		- part1-chapter3 강의 참고
+		- App-3 참고
 	- 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까요?
 		- numberTextView 의 height 값을 지정하지 말고, weight 를 이용
 2. weight 를 넣을 때 dimension 에 왜 0dp 를 넣으라고 했을까요?
