@@ -27,7 +27,7 @@
 
 ## App-1) 숫자세기 앱
 
-<사진>
+<img src="https://user-images.githubusercontent.com/87654809/212803675-65c118ad-7818-4738-98e8-45ef14293b48.gif">
 
 ### 구현 기능
 - '+' 버튼을 클릭 시, 숫자를 1씩 올리기
