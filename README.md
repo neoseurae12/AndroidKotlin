@@ -91,9 +91,27 @@
 	- ConstraintLayout
 	- EditText
 - Android
-	- ViewBinding
+	- ViewBinding (https://developer.android.com/topic/libraries/view-binding)
 	- ActivityLifecycle
 	- onSaveInstanceState
+	
+#### 학습내용
+- ViewBinding(뷰 바인딩)
+	- findViewById를 대체함
+		- findViewById의 nullPointException을 방지함
+		- UI 요소에 사용한 Id 값들에 뭐가 있었는지 다 꿰고 있지 않아도 됨
+- 에러처리
+	- [에러1] 숫자를 너무 길게 입력하면 NumberFormatException이 발생하면서 앱이 강제 종료됨
+		- 이유 : Int의 범위 => -2147483648 ~ 2147483647
+		- 해결방법 : try-catch문으로 해결 / 애초에 maxLength로 제한 두기
+	- [에러2] 숫자를 입력했다 지웠더니 또 NumberFormatException 발생. 근데 이번에는 For input string: "", 즉 input string이 "empty string"이라 발생. 즉, empty string을 숫자 몇으로 봐야하는지 애매해서 발생한 문제
+		- 해결방법 : 숫자 넣기 전에 if 문으로 text.isNullOrBlank()를 검사함
+	- [에러3] m -> cm 변환 시 숫자 추가 입력하면 갑자기 cm -> m로 값이 나옴
+		- 이유 : 애초에 TextChangedListener에서 cm -> m 계산을 디폴트로 설정해줬어서 그럼.
+		- 해결방법 : TextChangedListener에서도 cmToM 변수의 true/false에 따라 다르게 동작되도록 if문으로 분기 나눠줘야 함.
+	- [에러4] m -> cm 변환 시 m로 너무 큰 숫자를 입력하면 cm로 거기에 *100한 수가 나오면서 또 Int 범위를 초과하게 됨.
+		- 해결방법 : maxLength를 더 줄임
+- 에러 처리 굉장히 중요함. 잘 처리하지 못했을 시 앱 crash로 이어져 앱의 안정성이 떨어지고 사용자들의 불편을 초래하기 때문.
 
 ### 한 걸음 더
 1. 소수점이 정확하지 않은 이유는 뭘까요?
