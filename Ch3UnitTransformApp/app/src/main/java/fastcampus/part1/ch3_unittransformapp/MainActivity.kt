@@ -6,10 +6,11 @@ import android.os.PersistableBundle
 import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import fastcampus.part1.ch3_unittransformapp.databinding.ActivityMainBinding
+import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    var inputNumber :Int = 0
+    var inputNumber: BigDecimal = BigDecimal.ZERO
     var cmToM = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,15 +27,15 @@ class MainActivity : AppCompatActivity() {
 
         inputEditText.addTextChangedListener { text ->
             inputNumber = if(text.isNullOrBlank()) {
-                0
+                BigDecimal.ZERO
             } else {
-                text.toString().toInt()
+                text.toString().toBigDecimal()
             }
 
             if(cmToM) {
-                outputTextView.text = inputNumber.times(0.01).toString()
+                outputTextView.text = inputNumber.divide(BigDecimal(100)).toString()
             } else {
-                outputTextView.text = inputNumber.times(100).toString()
+                outputTextView.text = inputNumber.multiply(BigDecimal(100)).toString()
             }
         }
 
@@ -44,11 +45,11 @@ class MainActivity : AppCompatActivity() {
             if(cmToM) {
                 inputUnitTextView.text = "cm"
                 outputUnitTextView.text = "m"
-                outputTextView.text = inputNumber.times(0.01).toString()
+                outputTextView.text = inputNumber.divide(BigDecimal(100)).toString()
             } else {
                 inputUnitTextView.text = "m"
                 outputUnitTextView.text = "cm"
-                outputTextView.text = inputNumber.times(100).toString()
+                outputTextView.text = inputNumber.multiply(BigDecimal(100)).toString()
             }
         }
     }
