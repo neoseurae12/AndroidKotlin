@@ -68,12 +68,7 @@
 	
 ## App-2) 단위 변환 앱
 
-<div style="position:relative;width:fit-content;height:fit-content;">
-	<a style="position:absolute;top:20px;right:1rem;opacity:0.8;" href="https://clipchamp.com/watch/7x13gMmUA3X?utm_source=embed&utm_medium=embed&utm_campaign=watch">
-		<img style="height:22px;" src="https://clipchamp.com/e.svg" alt="Made with Clipchamp" />
-	</a>
-            <iframe allow="autoplay;" allowfullscreen style="border:none" src="https://clipchamp.com/watch/7x13gMmUA3X/embed" width="640" height="360"></iframe>
-</div>
+![App-2_단위전환 앱](https://user-images.githubusercontent.com/87654809/213958079-c95c5618-750f-43c1-8cc9-272737b28670.gif)
 
 ### 구현기능
 
