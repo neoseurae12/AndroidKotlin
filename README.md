@@ -54,12 +54,12 @@
 	- Log (중간 확인)
 
 ### 한 걸음 더
-1. 화면의 방향이 변경된다면 어떻게 해야할까요?
-	- 값을 유지하려면 어떻게 해야할까요?
+1. 화면의 방향이 변경된다면 어떻게 해야할까?
+	- 값을 유지하려면 어떻게 해야할까?
 		- App-3 참고
-	- 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까요?
+	- 화면 방향에 상관없이 버튼을 보이게 하려면 어떻게 해야할까?
 		- numberTextView 의 height 값을 지정하지 말고, weight 를 이용
-2. weight 를 넣을 때 dimension 에 왜 0dp 를 넣으라고 했을까요?
+2. weight 를 넣을 때 dimension 에 왜 0dp 를 넣으라고 했을까?
 	- LinearLayout 의 weight 값이 잘 적용되기 위해선, orientation 에 따라, width 또는 height 의 값이 0dp 여야 함
 		- orientation: vertical -> layout_height=“0dp”
 		- orientation: horizontal -> layout_width="0dp"
@@ -111,11 +111,36 @@
 		- 해결방법 : TextChangedListener에서도 cmToM 변수의 true/false에 따라 다르게 동작되도록 if문으로 분기 나눠줘야 함.
 	- [에러4] m -> cm 변환 시 m로 너무 큰 숫자를 입력하면 cm로 거기에 *100한 수가 나오면서 또 Int 범위를 초과하게 됨.
 		- 해결방법 : maxLength를 더 줄임
-- 에러 처리 굉장히 중요함. 잘 처리하지 못했을 시 앱 crash로 이어져 앱의 안정성이 떨어지고 사용자들의 불편을 초래하기 때문.
+	- 에러 처리 굉장히 중요함. 잘 처리하지 못했을 시 앱 crash로 이어져 앱의 안정성이 떨어지고 사용자들의 불편을 초래하기 때문.
+- Lifecycle
+	- https://developer.android.com/guide/components/activities/activity-lifecycle
+	- ![image](https://user-images.githubusercontent.com/87654809/213953195-af367c33-8010-45e1-ae98-8465680b4c8d.png)
+	- lifecycle을 알아야 하는 이유
+		- 상태 변화에 따른 처리를 잘해야 사용자가 원하는대로 서비스 제공 가능
+		- 적시에 알맞은 작업을 하고 적절하게 전환을 처리하면 앱이 더욱 안정적으로 기능 가능
+	- App-2)에서는, 화면이 가로 방향↔세로 방향 간에 회전할 경우, 비정상 종료되거나 사용자의 진행 상태가 저장되지 않는 문제를 통해, lifecycle의 각 콜백이 언제 불리는지, 그 동작은 뭔지를 확인했음
+		- m -> cm로 변경하고 화면을 돌렸더니 cm -> m로 제멋대로 바뀌어있음
+			- 참고 : Activity state changes > Configuration change occurs (https://developer.android.com/guide/components/activities/state-changes)
+		- 단순히 화면만 가로/세로 바꾸는 거지만 lifecycle 상에서는 onCreate()부터 "다시 시작"하게 됨
+		- 화면 전환을 해도 사용자의 데이터가 '유지'될 수 있도록 조치 취해줘야 함
+			- 참고 : The activity lifecycle > Saving and restoring transient UI state (https://developer.android.com/guide/components/activities/activity-lifecycle#saras)
+			- 방법 3가지 
+				- 1) ViewModel
+				- 2) onSaveInstanceState()
+				- 3) 로컬 저장소
+			- 이 중 가장 간단한 방법인 onSaveInstanceState()를 사용해서 해결해볼 예정
+	- [복원할 저장 상태 "저장"]
+		- 참고 : Save simple, lightweight UI state using onSaveInstanceState()
+		- onStop() -> onSaveInstanceState()
+		- Bundle 객체로 값 저장
+	- [복원할 저장 상태 "불러오기"]
+		- onCreate() 또는 
+		- onStart() -> onRestoreInstanceState() 
+			- 단, onRestoreInstanceState()는 복원할 저장 상태가 있을 경우에만 호출됨
 
 ### 한 걸음 더
-1. 소수점이 정확하지 않은 이유는 뭘까요?
+1. 소수점이 정확하지 않은 이유는 뭘까?
 	- Java 에서는 실수를 표현할 때는 부동 소수점 방식을 사용 하는데 이 때, 오차가 생길 수 있다. 근사값을 이용하기 때문이다. 부정확성을 해결하기 위해, BigDecimal 이라는 자료형을 사용하면 된다.
 		- 상세한 이유는 이해하지 못하더라도, 소수점이 정확하지 않을 수 있다는 점을 인지하고, 정확한 계산을 필요로 할 때는 다른 자료형을 사용하면 됨
 		- https://ko.wikipedia.org/wiki/%EB%B6%80%EB%8F%99%EC%86%8C%EC%88%98%EC%A0%90
-2. Activity Lifecycle 을 충분히 이해해봅시다.
+2. Activity Lifecycle 을 충분히 이해해보자.
