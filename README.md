@@ -144,3 +144,58 @@
 		- 상세한 이유는 이해하지 못하더라도, 소수점이 정확하지 않을 수 있다는 점을 인지하고, 정확한 계산을 필요로 할 때는 다른 자료형을 사용하면 됨
 		- https://ko.wikipedia.org/wiki/%EB%B6%80%EB%8F%99%EC%86%8C%EC%88%98%EC%A0%90
 2. Activity Lifecycle 을 충분히 이해해보자.
+
+## App-3) 응급의료정보 앱
+
+### 시나리오
+- 데이터 저장 및 불러오기
+- 전화 앱 실행하기
+- 데이터 삭제하기
+
+### 구현기능
+- 다양한 유저정보
+	- 이름
+	- 생년월일
+	- 혈액형
+	- 비상연락처
+	- 기타
+- 화면 전환
+- 다른 앱 실행
+- 데이터 저장
+
+### 학습 목표
+- 다양한 위젯을 사용하고, 테마를 이용하여 일관성 있는 UI 를 그릴 수 있다.
+	- ConstraintLayout 과 다양한 위젯을 활용
+	- Style 을 통한 일관성 있는 UI 구성
+	- Adapter 에 대한 이해
+	- 간단한 데이터 저장
+	- 다른 화면으로 이동
+	- 다른 앱 실행
+- UI
+	- ConstraintLayout
+		- guideLine
+	- Style
+	- Theme
+	- ImageView
+	- RadioButton
+	- CheckBox
+	- Spinner
+	- DatePickerDialog
+- Kotlin
+	- const val
+	- with
+- Android
+	- Manifest
+	- Intent
+		- 화면 전환
+		- 전화 앱 실행
+	- SharedPreference
+	- Toast
+
+### 한 걸음 더
+1. Intent 로 할 수 있는 다양한 동작에 대해 학습해보기
+	- https://developer.android.com/reference/android/content/Intent?hl=ko
+2. Manifest 에 들어가는 다양한 값들에 대해 학습해보기
+	- https://developer.android.com/guide/topics/manifest/manifest-intro#reference
+3. Kotlin 의 다양한 ScopeFunction 에 대해 학습해보기
+	- https://kotlinlang.org/docs/scope-functions.html
