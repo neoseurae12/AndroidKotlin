@@ -147,6 +147,8 @@
 
 ## App-3) 응급의료정보 앱
 
+![App-3_응급의료정보 앱](https://user-images.githubusercontent.com/87654809/214242666-75170fed-c3c1-4734-a800-cfa8cf91d582.gif)
+
 ### 시나리오
 - 데이터 저장 및 불러오기
 - 전화 앱 실행하기
