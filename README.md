@@ -160,6 +160,7 @@
 	- 비상연락처
 	- 기타
 - 화면 전환
+	- intent & activity 추
 - 다른 앱 실행
 - 데이터 저장
 
@@ -174,23 +175,60 @@
 - UI
 	- ConstraintLayout
 		- guideLine
+			- 어느 정도까지만 나타날 수 있도록 함
+			- orientation 지정
+		- layer
+			- 두 개 이상의 요소 "묶기"
 	- Style
+		- res 폴더에 Android Resource File 추가
+		- activity_main.xml 파일에서 style 값으로 적용
 	- Theme
 	- ImageView
 	- RadioButton
+		- radiogroup으로 묶어서, 그 중 '하나'만 선택 가능하도록 함
 	- CheckBox
-	- Spinner
+	- Spinner ★
+		- Adapter : list형 데이터 & UI를 한 번에 연결해주는 역할 => 반복 작업 ↓
 	- DatePickerDialog
+		- calendar 보여줌
+		- .show() 까지 붙여야 보여줌
+		- month가 (선택한 달)-1 값으로 나옴. 따라서 +1을 더해줘야 함
 - Kotlin
 	- const val
+		- 하드코딩 피하기
+		- 자주 쓰거나 중요한 변수에 오타나면 안 되니까 const 상수값으로 Const.kt 파일에 선언해줌
 	- with
+		- scope function ☞ 코틀린의 장점
 - Android
 	- Manifest
+		- 안드로이드 앱의 개략적인 개요도
+		- 추가해야 하는 것들은 반드시 추가해놔야 함
+		- manifests 파일에 InputActivity가 선언되어있지 않을 시 => ActivityNotFoundException 발생
+		- 일일이 선언이 귀찮다면 애초부터 activity 추가할 때 New > Acitivity 로 추가할 것
 	- Intent
-		- 화면 전환
-		- 전화 앱 실행
+		- 참고 : https://developer.android.com/guide/components/intents-filters
+		- 명시적 intent : ex) 화면 전환 / 어떤 화면으로 갈지가 아주 명확한 경우
+		- 암시적 intent : ex) 전화 앱 실행 / 어떤 동작이라는 것까지만 알고 구체적으로 어떻게 실행할지는 모를 경우
+			- 참고 : https://developer.android.com/training/basics/intents/sending
 	- SharedPreference
+		- <비교> Intent의 역할
+			- activity와 activity 간의 전환 & 데이터(메세지) 전달 & 다른 앱 실행 가능
+			- 하지만 앱을 껐다 다시 들어가면 주고받던 데이터 다 날라감.
+			- 이유 : intent는 activity들 간에 데이터를 주고받을 뿐, 해당 데이터를 어딘가에 '저장'해놓은 건 아니기 때문.
+		- SharedPreferences의 역할
+			- 파일 형태로 "데이터 저장"
+			- 데이터 저장 후에 '종료'(finish())까지 해줘야 함
+			- 참고: https://developer.android.com/training/data-storage/shared-preferences
+		- getSharedPreferences().edit()에서 잊지말아야 하는 것 : apply()까지 해야 적용된다!
+			- commit() : 동기적. 해당 스레드에서 데이터 저장을 다 하기 전까지 다음 스레드의 동작을 막음
+			- apply() : 비동기적. 
+			- 가능한 apply >> commit
 	- Toast
+		- 밑에 작게 메세지 뜨게 함
+		- .show()까지 해야 보임
+	- onResume()
+		- activity로 다시 돌아왔을 때는 onCreate()가 아닌 onResume()이 호출됨
+- 함수 하나에 기능 '하나'만 있는 게 좋다
 
 ### 한 걸음 더
 1. Intent 로 할 수 있는 다양한 동작에 대해 학습해보기
