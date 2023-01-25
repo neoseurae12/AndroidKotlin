@@ -239,3 +239,36 @@
 	- https://developer.android.com/guide/topics/manifest/manifest-intro#reference
 3. Kotlin 의 다양한 ScopeFunction 에 대해 학습해보기
 	- https://kotlinlang.org/docs/scope-functions.html
+
+
+## App-4) 계산기 앱
+
+<지아이에프 첨부 예정>
+
+### 시나리오
+- +, - 연산 및 숫자 포맷팅
+- 다크 테마 대응
+
+### 구현기능
+- 계산기 UI 구현
+- 두개의 자연수에 대한 연산
+- +, - 연산
+- 액션바(툴바) 제거
+- 다크 모드에서 색상값 변경
+
+### 학습 목표
+- 계산기 UI 를 그리고, 간단한 계산 기능을 구현할 수 있다
+	- TableLayout이 아닌, ConstraintLayout-Flow 로 계산기 UI 그리기
+	- 다크/라이트 모드에 따른 UI 그리기
+- UI
+	- ConstraintLayout - Flow
+	- style
+	- color (Light/Dark)
+	- theme
+- Kotlin
+	- when
+	- StringBuilder
+
+### 한 걸음 더
+- String VS StringBuilder 언제 쓰는게 좋을지 학습해보기
+- 계산기의 다양한 기능을 구현해보기
