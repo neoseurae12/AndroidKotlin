@@ -33,7 +33,7 @@
 - '+' 버튼을 클릭 시, 숫자를 1씩 올리기
 - 초기화 버튼을 클릭 시, 숫자를 0으로 변경하기
 
-### 학습 목표
+### 학습 목표 및 내용
 - 간단한 기능을 구현하고, UI 를 그릴 수 있다
 	- LinearLayout 을 이용하여 간단한 UI 를 그릴 수 있다.
 	- Activity 를 통해 사용자 입력에 대한 출력을 보여줄 수 있다.
@@ -81,7 +81,6 @@
 	- m → cm (X 100)
 
 ### 학습 목표
-
 - 간단한 기능을 구현하고, UI 를 그릴 수 있다 (2)
 	- ConstraintLayout 을 이용하여 간단한 UI 를 그릴 수 있다.
 	- 키보드로 사용자가 입력한 값을 받을 수 있다.
@@ -166,7 +165,7 @@
 - 다른 앱 실행
 - 데이터 저장
 
-### 학습 목표
+### 학습 목표 및 내용
 - 다양한 위젯을 사용하고, 테마를 이용하여 일관성 있는 UI 를 그릴 수 있다.
 	- ConstraintLayout 과 다양한 위젯을 활용
 	- Style 을 통한 일관성 있는 UI 구성
@@ -256,18 +255,47 @@
 - 액션바(툴바) 제거
 - 다크 모드에서 색상값 변경
 
-### 학습 목표
+### 학습 목표 및 내용
 - 계산기 UI 를 그리고, 간단한 계산 기능을 구현할 수 있다
-	- TableLayout이 아닌, ConstraintLayout-Flow 로 계산기 UI 그리기
+	- 일반적으로 계산기 UI는 TableLayout을 사용한다고 함
+	- BUT 이번 앱에서는 TableLayout이 아닌, ConstraintLayout-Flow 로 계산기 UI를 그려봄
 	- 다크/라이트 모드에 따른 UI 그리기
 - UI
 	- ConstraintLayout - Flow
+		- 참고 : https://developer.android.com/reference/androidx/constraintlayout/helper/widget/Flow
+		- ≠ 데이터 흐름 관리의 flow (구분할 것!)
+		- ConstrainLayout-Flow의 가장 큰 장점
+			- hierarchy flat ☞ 뷰 구조를 flat하게 가져갈 수 있음 => 랜더링(UI 그리는) 속도 ↑
+		- LinearLayout의 장점, 즉 UI의 positioning이 편하다는 점도 함께 가질 수 있음
+		- flow로 배치해줄 거라면 constraint를 넣어줄 필요 없음
+			- Suppress, 즉 tools:ignore="MissingConstraints" 코드 추가 必
+		- 한 줄에 쌓는 개수 제한해주려면 ☞ maxElementWrap에 개수 적어서 사용. 
+			- 단, flow_wrapMode를 함께 선언해줘야 함
 	- style
 	- color (Light/Dark)
 	- theme
+	- backgroundTint
+		- backgroundColor가 아닌 "backgroundTint"를 사용한 이유
+			- backgroundTint : 원래 있던 버튼에 색깔만 딱 입힐 수 있음
+			- backgroundColor : 네모 안의 모든 컬러를 다 지정한 컬러로 채워버림
+	- weight
+		- UI의 가중치 주는 방법
+		- EX) app:layout_constraintHorizontal_weight="2"
+	- 액션바 없애기
+		- manifest의 theme에서 NoActionBar로 바꿔 설정
+	- 다크/라이트 모드에 따른 UI 달리 그리기
+		- colors 디렉토리에 night 테마 버전 colors 파일을 추가 -> defaultTextColor로 테마에 따라 다르게 지정
 - Kotlin
 	- when
 	- StringBuilder
+		- 값이 많이 변경되어야 할 경우에는 String보단 StringBuilder를 쓰는 게 더 효과적
+	- BigDecimal
+		- Int의 범위를 넘어서는 너무 큰 숫자를 집어넣었을 때 앱이 강제종료 되어버리는 NumberFormatException에 대한 예외처리 가능
+	- DecimalFormat
+		- 첫 입력 숫자가 "0"인 경우 (ex) 01234 + 23)
+		- 숫자단위 표시를 위해 3자리마다 ","(쉼표) 표현할 경우
+			- DecimalFormat("#,###")
+
 
 ### 한 걸음 더
 - String VS StringBuilder 언제 쓰는게 좋을지 학습해보기
