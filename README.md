@@ -245,8 +245,8 @@
 1. +, - 연산 <br>
 <img src="https://user-images.githubusercontent.com/87654809/215043698-6753c2d2-10b9-4759-9900-aad36e3b8078.gif" width="400" height="400" />
 
-2. 다크테마 및 숫자 포맷팅
-![App-4_다크테마 및 숫자 포맷팅](https://user-images.githubusercontent.com/87654809/215043762-6f63747c-dd0d-4a11-9154-a0a8d6d9030e.gif)
+2. 다크테마 및 숫자 포맷팅 <br>
+<img src="https://user-images.githubusercontent.com/87654809/215043762-6f63747c-dd0d-4a11-9154-a0a8d6d9030e.gif" width="400" height="400" />
 
 ### 시나리오
 - +, - 연산 및 숫자 포맷팅
