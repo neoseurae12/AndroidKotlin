@@ -243,10 +243,10 @@
 ## App-4) 계산기 앱
 
 1. +, - 연산
-![App-4_+, - 연산](https://user-images.githubusercontent.com/87654809/215041921-05b1f7e6-8970-4378-b117-836b97e13562.gif)
+![App-4_+, - 연산](https://user-images.githubusercontent.com/87654809/215043698-6753c2d2-10b9-4759-9900-aad36e3b8078.gif)
 
 2. 다크테마 및 숫자 포맷팅
-![App-4_다크테마 및 숫자 포맷팅](https://user-images.githubusercontent.com/87654809/215042007-0af644c0-87e7-49ce-9b71-94a555925ed4.gif)
+![App-4_다크테마 및 숫자 포맷팅](https://user-images.githubusercontent.com/87654809/215043762-6f63747c-dd0d-4a11-9154-a0a8d6d9030e.gif)
 
 ### 시나리오
 - +, - 연산 및 숫자 포맷팅
