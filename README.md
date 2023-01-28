@@ -304,3 +304,51 @@
 ### 한 걸음 더
 - String VS StringBuilder 언제 쓰는게 좋을지 학습해보기
 - 계산기의 다양한 기능을 구현해보기
+
+
+## App-5) 스톱워치 앱
+
+### 구현기능
+- 스톱워치 기능
+	- 0.1초 마다 숫자 업데이트
+	- 시작, 일시정지, 정지
+	- 정지 전 다이얼로그 알람
+- 시작 전 카운트 다운 추가
+- 카운트 다운 3초전 알림음
+- 랩타임 기록
+
+### 학습 목표
+- 안드로이드 UI 스레드를 이해하고, UI 를 그릴 수 있다
+	- 시간에 따라 숫자 표현하기
+	- 코틀린 코드로 동적으로 View 추가하기
+- UI
+	- ConstaintLayout
+	- ProgressBar
+- Android
+	- AlertDialog
+	- Thread
+	- runOnUiThread
+	- ToneGenerator
+	- addView
+
+### Thread
+- 스레드 : 작업 공간
+- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
+- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
+
+#### 규칙
+1. UI 스레드를 차단하지 마세요.
+	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding)
+2. UI 스레드 외부에서 Android UI 도구 키트에 액세스하지 마세요.
+	- Exception
+![thread](https://user-images.githubusercontent.com/87654809/215251082-d4392961-cb59-4a7e-bbd9-362da3a8ab1b.png)
+
+#### 해결 방법
+- Activity.runOnUiThread(Runnable)
+- View.post(Runnable)
+- View.postDelayed(Runnable, long)
+- Handler
+
+### 한 걸음 더
+1. Handler 를 통해서, UI 스레드 작업 해보기
+2. Handler 를 통해서 메시지를 전송 해보기
