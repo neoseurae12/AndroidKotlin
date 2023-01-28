@@ -340,7 +340,7 @@
 1. UI 스레드를 차단하지 마세요.
 	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding)
 2. UI 스레드 외부에서 Android UI 도구 키트에 액세스하지 마세요.
-	- Exception
+	- Exception <br>
 ![thread](https://user-images.githubusercontent.com/87654809/215251082-d4392961-cb59-4a7e-bbd9-362da3a8ab1b.png)
 
 #### 해결 방법
