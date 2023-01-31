@@ -352,10 +352,15 @@
 - 메인 스레드 (UI 스레드) ↔ 작업자 스레드
 	- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
 	- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
+- '메인 스레드 (UI 스레드)'는 가장 중요한 UI를 오직 그리게 하고, 시간이 많이 걸리는 작업들의 경우에는 '작업자 스레드'에 넘겨줘서 대기를 최소화한다
 
 #### 규칙
 1. UI 스레드를 차단하지 마세요.
-	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding)
+	- ANR (앱 응답성 유지) 을 일으키지 않기 위함
+	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding) 발생
+	- ANR (앱 응답성 유지)
+		- 참고 : https://developer.android.com/training/articles/perf-anr
+		- EX) 네트워크 액세스 문제
 2. UI 스레드 외부에서 Android UI 도구 키트에 액세스하지 마세요.
 	- Exception <br>
 ![thread](https://user-images.githubusercontent.com/87654809/215251082-d4392961-cb59-4a7e-bbd9-362da3a8ab1b.png)
