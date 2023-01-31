@@ -400,3 +400,40 @@ public final void runOnUiThread(Runnable action) {
 ### 한 걸음 더
 1. Handler 를 통해서, UI 스레드 작업 해보기
 2. Handler 를 통해서 메시지를 전송 해보기
+
+
+## App-6. 단어장 앱
+
+### 구현기능
+- 단어장 UI 구현
+- 단어 추가
+- 단어 수정
+- 단어 삭제
+
+### 학습 목표
+- 데이터를 추가, 수정, 삭제 하고, UI 에 변경된 내용을 보여줄 수 있다
+	- Room 을 이용해, 데이터 추가, 수정, 삭제, 읽기
+	- RecyclerView 와 RecyclerViewAdapter 를 이용해 리스트 그리기
+	- 변경된 데이터에 따른 내용을 UI 업데이트
+- UI
+	- RecyclerView, Adapter
+		- 어댑터로 레이아웃 빌드
+	- TextInputLayout, TextInputEditText
+	- ChipGroup, Chip
+	- ConstraintLayout - Barrier
+- Kotlin
+	- data class
+- Android
+	- Room
+	- registerForActivityResult
+	- Parcelize
+
+#### RecyclerView
+![recyclerView](https://user-images.githubusercontent.com/87654809/215900657-35ca4ce6-9ebd-4f40-af06-4a3d48e5e3f8.png)
+
+#### RecyclerViewAdapter
+![recyclerViewAdapter](https://user-images.githubusercontent.com/87654809/215900753-e3019160-0cda-40a0-918a-3f763eb2b623.png)
+
+### 한걸음 더
+- 이번에 구현한 방법과 다르게, RecyclerView 아이템 클릭 리스너로 구현해보기
+- 단어 추가 화면에서, 추가 버튼 클릭 시, 유효성 체크 해보기
