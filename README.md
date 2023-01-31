@@ -308,6 +308,8 @@
 
 ## App-5) 스톱워치 앱
 
+![App-5_스톱워치 앱](https://user-images.githubusercontent.com/87654809/215706812-3e890d9f-ad5b-4cc2-b728-070adf48a25f.gif)
+
 ### 구현기능
 - 스톱워치 기능
 	- 0.1초 마다 숫자 업데이트
@@ -317,24 +319,39 @@
 - 카운트 다운 3초전 알림음
 - 랩타임 기록
 
-### 학습 목표
+### 학습 목표 및 내용
 - 안드로이드 UI 스레드를 이해하고, UI 를 그릴 수 있다
 	- 시간에 따라 숫자 표현하기
 	- 코틀린 코드로 동적으로 View 추가하기
 - UI
 	- ConstaintLayout
+	- Guideline
+		- 버튼 UI 요소들의 visibility가 자꾸 바뀌는 상황에서 button에다가 종속성을 준다면 그 button이 삭제 됐을 때 그 UI 요소가 없어져버리게 되어 constraint가 깨질 수 있음.
+		- 그래서 그 대신에 Guideline을 추가해서 해결해줌
 	- ProgressBar
 - Android
 	- AlertDialog
-	- Thread
+		- 기본적으로 안드로이드에서 제공해주는 dialog
+		- Dialogs (대화상자)
+			- 참고 : https://developer.android.com/develop/ui/views/components/dialogs
+		- 끝에 꼭 .show()를 해야 세팅한 AlertDialog가 정말로 보일 수 있음에 주의
+	- numberPicker
+		- 설정 가능한 값 : min & max & current(현재) 값 등등
+	- Thread ★
 	- runOnUiThread
 	- ToneGenerator
+		- 3초 전부터 1초마다 beep 음이 나도록 하는 데에 사용
 	- addView
-
-### Thread
+- Kotlin
+	- String.format()
+		- EX) 3을 03처럼 나타내고 싶다면 => String.format("%02d", countdownSecond)
+		
+### Thread ★
+- 참고 : https://developer.android.com/guide/components/processes-and-threads
 - 스레드 : 작업 공간
-- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
-- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
+- 메인 스레드 (UI 스레드) ↔ 작업자 스레드
+	- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
+	- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
 
 #### 규칙
 1. UI 스레드를 차단하지 마세요.
