@@ -338,10 +338,27 @@
 	- numberPicker
 		- 설정 가능한 값 : min & max & current(현재) 값 등등
 	- Thread ★
-	- runOnUiThread
+		- 0.1초마다 시간 흐름 체킹 => 메인 스레드가 아닌 '작업자 스레드'에서 이뤄져야 함
+			- 메인 스레드에서 이 작업을 하게 되면 다른 UI 작업을 할 수 없게 되기 때문
+		- CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
+			- 작업자 스레드에서 UI 수정 작업을 했을 때 발생하는 Exception
+		- 해결방법-1) runOnUiThread
+			- 코드 :
+			```kotlin
+public final void runOnUiThread(Runnable action) {
+    if (Thread.currentThread() != mUiThread) {
+        mHandler.post(action);
+    } else {
+        action.run();
+    }
+}
+			```
+			- 설명 : Runs the specified action on the UI thread. If the current thread is the UI thread, then the action is executed immediately. If the current thread is not the UI thread, the action is posted to the event queue of the UI thread.
 	- ToneGenerator
 		- 3초 전부터 1초마다 beep 음이 나도록 하는 데에 사용
 	- addView
+		- 동적으로 kotlin 코드로 UI를 그리는 방법
+			- ↔ 여태까지의 방법 : XML에서 선언한 UI를 inflating시키는 방법으로 UI 그림
 - Kotlin
 	- String.format()
 		- EX) 3을 03처럼 나타내고 싶다면 => String.format("%02d", countdownSecond)
@@ -362,7 +379,16 @@
 		- 참고 : https://developer.android.com/training/articles/perf-anr
 		- EX) 네트워크 액세스 문제
 2. UI 스레드 외부에서 Android UI 도구 키트에 액세스하지 마세요.
-	- Exception <br>
+	- Android UI 작업은 오직 '메인 스레드 (UI 스레드)'에서만 할 수 있고, 그 외부의 작업자 스레드에서는 작업할 수 없다
+		- UI를 그리는 작업은 굉장히 중요하기 때문
+		- UI 그리는 작업을 메인 스레드 외 다른 작업자 스레드들도 나눠 맡게 되면, 시스템단에서는 어떤 작업을 먼저 처리해야할지 판단이 뒤죽박죽되어 결국 가장 중요한 작업인 UI 그리는 작업에서 오류가 나게 됨
+	- Exception
+		- 작업자 스레드에서 완료한 작업을 유저에게 알려주기 위해 외부에서 메인의 UI 조작을 어쩔수없이 해야하는 경우
+		- 해결방법 : Handler
+			- 작업자 스레드 --(Runnable 객체 또는 메세지 객체)--> 핸들러 --(한줄서기)--> Message Queue ----> Looper (Message Queue에 뭐가 들어왔나 계속 돌며 확인)
+				- 만약 '메세지 객체'라면 => 루퍼가 핸들러 보고 이 메세지 처리하라고 handleMessage()를 호출함
+				- 만약 'Runnable 객체'라면 => 루퍼가 실제 실행을 함
+
 ![thread](https://user-images.githubusercontent.com/87654809/215251082-d4392961-cb59-4a7e-bbd9-362da3a8ab1b.png)
 
 #### 해결 방법
