@@ -308,6 +308,8 @@
 
 ## App-5) 스톱워치 앱
 
+![App-5_스톱워치 앱](https://user-images.githubusercontent.com/87654809/215706812-3e890d9f-ad5b-4cc2-b728-070adf48a25f.gif)
+
 ### 구현기능
 - 스톱워치 기능
 	- 0.1초 마다 숫자 업데이트
@@ -317,30 +319,76 @@
 - 카운트 다운 3초전 알림음
 - 랩타임 기록
 
-### 학습 목표
+### 학습 목표 및 내용
 - 안드로이드 UI 스레드를 이해하고, UI 를 그릴 수 있다
 	- 시간에 따라 숫자 표현하기
 	- 코틀린 코드로 동적으로 View 추가하기
 - UI
 	- ConstaintLayout
+	- Guideline
+		- 버튼 UI 요소들의 visibility가 자꾸 바뀌는 상황에서 button에다가 종속성을 준다면 그 button이 삭제 됐을 때 그 UI 요소가 없어져버리게 되어 constraint가 깨질 수 있음.
+		- 그래서 그 대신에 Guideline을 추가해서 해결해줌
 	- ProgressBar
 - Android
 	- AlertDialog
-	- Thread
-	- runOnUiThread
+		- 기본적으로 안드로이드에서 제공해주는 dialog
+		- Dialogs (대화상자)
+			- 참고 : https://developer.android.com/develop/ui/views/components/dialogs
+		- 끝에 꼭 .show()를 해야 세팅한 AlertDialog가 정말로 보일 수 있음에 주의
+	- numberPicker
+		- 설정 가능한 값 : min & max & current(현재) 값 등등
+	- Thread ★
+		- 0.1초마다 시간 흐름 체킹 => 메인 스레드가 아닌 '작업자 스레드'에서 이뤄져야 함
+			- 메인 스레드에서 이 작업을 하게 되면 다른 UI 작업을 할 수 없게 되기 때문
+		- CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
+			- 작업자 스레드에서 UI 수정 작업을 했을 때 발생하는 Exception
+		- 해결방법-1) runOnUiThread
+			- 코드 :
+			```kotlin
+public final void runOnUiThread(Runnable action) {
+    if (Thread.currentThread() != mUiThread) {
+        mHandler.post(action);
+    } else {
+        action.run();
+    }
+}
+			```
+			- 설명 : Runs the specified action on the UI thread. If the current thread is the UI thread, then the action is executed immediately. If the current thread is not the UI thread, the action is posted to the event queue of the UI thread.
 	- ToneGenerator
+		- 3초 전부터 1초마다 beep 음이 나도록 하는 데에 사용
 	- addView
-
-### Thread
+		- 동적으로 kotlin 코드로 UI를 그리는 방법
+			- ↔ 여태까지의 방법 : XML에서 선언한 UI를 inflating시키는 방법으로 UI 그림
+- Kotlin
+	- String.format()
+		- EX) 3을 03처럼 나타내고 싶다면 => String.format("%02d", countdownSecond)
+		
+### Thread ★
+- 참고 : https://developer.android.com/guide/components/processes-and-threads
 - 스레드 : 작업 공간
-- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
-- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
+- 메인 스레드 (UI 스레드) ↔ 작업자 스레드
+	- 메인 스레드 (UI 스레드) : 애플리케이션이 실행되면서 안드로이드 시스템이 생성하는 스레드로, UI 를 그리는 역할
+	- 작업자 스레드 (Worker Thread) : 메인스레드 이외의 스레드
+- '메인 스레드 (UI 스레드)'는 가장 중요한 UI를 오직 그리게 하고, 시간이 많이 걸리는 작업들의 경우에는 '작업자 스레드'에 넘겨줘서 대기를 최소화한다
 
 #### 규칙
 1. UI 스레드를 차단하지 마세요.
-	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding)
+	- ANR (앱 응답성 유지) 을 일으키지 않기 위함
+	- 앱이 일정시간 동안 반응이 없을 경우 ANR (Application Not Responding) 발생
+	- ANR (앱 응답성 유지)
+		- 참고 : https://developer.android.com/training/articles/perf-anr
+		- EX) 네트워크 액세스 문제
 2. UI 스레드 외부에서 Android UI 도구 키트에 액세스하지 마세요.
-	- Exception <br>
+	- Android UI 작업은 오직 '메인 스레드 (UI 스레드)'에서만 할 수 있고, 그 외부의 작업자 스레드에서는 작업할 수 없다
+		- UI를 그리는 작업은 굉장히 중요하기 때문
+		- UI 그리는 작업을 메인 스레드 외 다른 작업자 스레드들도 나눠 맡게 되면, 시스템단에서는 어떤 작업을 먼저 처리해야할지 판단이 뒤죽박죽되어 결국 가장 중요한 작업인 UI 그리는 작업에서 오류가 나게 됨
+	- Exception
+		- 작업자 스레드에서 완료한 작업을 유저에게 알려주기 위해 외부에서 메인의 UI 조작을 어쩔수없이 해야하는 경우
+		- 해결방법 : Handler
+			- 작업자 스레드 --(Runnable 객체 또는 메세지 객체)--> 핸들러 --(한줄서기)--> Message Queue ----> Looper (Message Queue에 뭐가 들어왔나 계속 돌며 확인)
+				- 만약 '메세지 객체'라면 => 루퍼가 핸들러 보고 이 메세지 처리하라고 handleMessage()를 호출함
+				- 만약 'Runnable 객체'라면 => 루퍼가 실제 실행을 함
+
 ![thread](https://user-images.githubusercontent.com/87654809/215251082-d4392961-cb59-4a7e-bbd9-362da3a8ab1b.png)
 
 #### 해결 방법
@@ -352,3 +400,40 @@
 ### 한 걸음 더
 1. Handler 를 통해서, UI 스레드 작업 해보기
 2. Handler 를 통해서 메시지를 전송 해보기
+
+
+## App-6. 단어장 앱
+
+### 구현기능
+- 단어장 UI 구현
+- 단어 추가
+- 단어 수정
+- 단어 삭제
+
+### 학습 목표
+- 데이터를 추가, 수정, 삭제 하고, UI 에 변경된 내용을 보여줄 수 있다
+	- Room 을 이용해, 데이터 추가, 수정, 삭제, 읽기
+	- RecyclerView 와 RecyclerViewAdapter 를 이용해 리스트 그리기
+	- 변경된 데이터에 따른 내용을 UI 업데이트
+- UI
+	- RecyclerView, Adapter
+		- 어댑터로 레이아웃 빌드
+	- TextInputLayout, TextInputEditText
+	- ChipGroup, Chip
+	- ConstraintLayout - Barrier
+- Kotlin
+	- data class
+- Android
+	- Room
+	- registerForActivityResult
+	- Parcelize
+
+#### RecyclerView
+![recyclerView](https://user-images.githubusercontent.com/87654809/215900657-35ca4ce6-9ebd-4f40-af06-4a3d48e5e3f8.png)
+
+#### RecyclerViewAdapter
+![recyclerViewAdapter](https://user-images.githubusercontent.com/87654809/215900753-e3019160-0cda-40a0-918a-3f763eb2b623.png)
+
+### 한걸음 더
+- 이번에 구현한 방법과 다르게, RecyclerView 아이템 클릭 리스너로 구현해보기
+- 단어 추가 화면에서, 추가 버튼 클릭 시, 유효성 체크 해보기
