@@ -343,17 +343,18 @@
 		- CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
 			- 작업자 스레드에서 UI 수정 작업을 했을 때 발생하는 Exception
 		- 해결방법-1) runOnUiThread
-			- 코드 :
-```kotlin
-public final void runOnUiThread(Runnable action) {
-    if (Thread.currentThread() != mUiThread) {
-        mHandler.post(action);
-    } else {
-        action.run();
-    }
-}```
-
 			- 설명 : Runs the specified action on the UI thread. If the current thread is the UI thread, then the action is executed immediately. If the current thread is not the UI thread, the action is posted to the event queue of the UI thread.
+			- 코드 :
+				```kotlin
+				public final void runOnUiThread(Runnable action) {
+				    if (Thread.currentThread() != mUiThread) {
+				        mHandler.post(action);
+				    } else {
+				        action.run();
+				    }
+				}
+				``` 
+
 		- 해결방법-2) View.post(Runnable)
 		- 새로운 작업자 스레드의 생성 => timer()
 			- timer.cancel() => Terminates this timer
