@@ -344,7 +344,7 @@
 			- 작업자 스레드에서 UI 수정 작업을 했을 때 발생하는 Exception
 		- 해결방법-1) runOnUiThread
 			- 코드 :
-			```kotlin
+```kotlin
 public final void runOnUiThread(Runnable action) {
     if (Thread.currentThread() != mUiThread) {
         mHandler.post(action);
@@ -352,8 +352,11 @@ public final void runOnUiThread(Runnable action) {
         action.run();
     }
 }
-			```
+```
 			- 설명 : Runs the specified action on the UI thread. If the current thread is the UI thread, then the action is executed immediately. If the current thread is not the UI thread, the action is posted to the event queue of the UI thread.
+		- 해결방법-2) View.post(Runnable)
+		- 새로운 작업자 스레드의 생성 => timer()
+			- timer.cancel() => Terminates this timer
 	- ToneGenerator
 		- 3초 전부터 1초마다 beep 음이 나도록 하는 데에 사용
 	- addView
@@ -362,6 +365,7 @@ public final void runOnUiThread(Runnable action) {
 - Kotlin
 	- String.format()
 		- EX) 3을 03처럼 나타내고 싶다면 => String.format("%02d", countdownSecond)
+- 코드 정돈 단축키 => ctrl + alt + l
 		
 ### Thread ★
 - 참고 : https://developer.android.com/guide/components/processes-and-threads
