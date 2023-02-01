@@ -353,6 +353,7 @@ public final void runOnUiThread(Runnable action) {
     }
 }
 ```
+
 			- 설명 : Runs the specified action on the UI thread. If the current thread is the UI thread, then the action is executed immediately. If the current thread is not the UI thread, the action is posted to the event queue of the UI thread.
 		- 해결방법-2) View.post(Runnable)
 		- 새로운 작업자 스레드의 생성 => timer()
