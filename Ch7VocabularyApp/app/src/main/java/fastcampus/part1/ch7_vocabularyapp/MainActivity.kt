@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
 
         initRecyclerView()
 
+        // addButton 누를 시 => Add 페이지로 넘어가기
         binding.addButton.setOnClickListener {
             Intent(this, AddActivity::class.java).let {
                 startActivity(it)
@@ -37,12 +38,12 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
         binding.wordRecyclerView.apply {
             adapter = wordAdapter
             layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+
+            // item들 사이에 'divider'(구분선) 추가하기
             val dividerItemDecoration = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
             addItemDecoration(dividerItemDecoration)
         }
     }
-
-
 
     override fun onClick(word: Word) {
         Toast.makeText(this, "${word.text} 가 클릭 됐습니다", Toast.LENGTH_SHORT).show()
