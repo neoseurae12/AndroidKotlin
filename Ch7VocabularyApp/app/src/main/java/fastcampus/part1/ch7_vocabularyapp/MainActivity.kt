@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
     }
 
     private fun initRecyclerView() {
-        val dummyList = mutableListOf(
-            Word("guitar", "기타", "명사"),
-            Word("smile", "미소", "명사"),
-            Word("run", "실행하다", "동사"),
-            Word("fast", "빠른", "형용사"),
-        )
+//        val dummyList = mutableListOf(
+//            Word("guitar", "기타", "명사"),
+//            Word("smile", "미소", "명사"),
+//            Word("run", "실행하다", "동사"),
+//            Word("fast", "빠른", "형용사"),
+//        )
 
-        wordAdapter = WordAdapter(dummyList, this)
+        wordAdapter = WordAdapter(mutableListOf(), this)
         binding.wordRecyclerView.apply {
             adapter = wordAdapter
             layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)

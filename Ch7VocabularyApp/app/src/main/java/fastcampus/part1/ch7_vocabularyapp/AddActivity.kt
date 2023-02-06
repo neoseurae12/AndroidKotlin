@@ -2,6 +2,7 @@ package fastcampus.part1.ch7_vocabularyapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.chip.Chip
 import fastcampus.part1.ch7_vocabularyapp.databinding.ActivityAddBinding
 
@@ -13,6 +14,10 @@ class AddActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViews()
+
+        binding.addButton.setOnClickListener {
+            add()
+        }
     }
 
     private fun initViews() {
@@ -30,5 +35,17 @@ class AddActivity : AppCompatActivity() {
             isCheckable = true
             isClickable = true
         }
+    }
+
+    private fun add() {
+        val text = binding.textTextInputEditText.text.toString()
+        val mean = binding.meanTextInputEditText.text.toString()
+        val type = findViewById<Chip>(binding.typeChipGroup.checkedChipId).text.toString()
+
+        val word = Word(text, mean, type)
+
+        AppDatabase.getInstance(this)?.wordDao()?.insert(word)
+        Toast.makeText(this, "저장을 완료했습니다!", Toast.LENGTH_SHORT).show()
+        finish()
     }
 }
