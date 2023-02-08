@@ -409,6 +409,15 @@
 
 ## App-6. 단어장 앱
 
+i) 단어 추가
+![App-6_단어장 앱_단어 추가](https://user-images.githubusercontent.com/87654809/217444541-fe3ada09-4811-4fd7-827a-d37839ecd757.gif)
+
+ii) 단어 수정
+![App-6_단어장 앱_단어 수정](https://user-images.githubusercontent.com/87654809/217444575-23962dd7-1bde-4966-8ecc-d89b5c4c94db.gif)
+
+iii) 단어 삭제
+![App-6_단어장 앱_단어 삭제](https://user-images.githubusercontent.com/87654809/217444605-809659de-e1e4-4fe5-acf8-83230ba2ee59.gif)
+
 ### 구현기능
 - 단어장 UI 구현
 - 단어 추가
