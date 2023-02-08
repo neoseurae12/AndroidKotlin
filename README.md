@@ -409,6 +409,15 @@
 
 ## App-6. 단어장 앱
 
+i) 단어 추가
+![App-6_단어장 앱_단어 추가](https://user-images.githubusercontent.com/87654809/217444541-fe3ada09-4811-4fd7-827a-d37839ecd757.gif)
+
+ii) 단어 수정
+![App-6_단어장 앱_단어 수정](https://user-images.githubusercontent.com/87654809/217444575-23962dd7-1bde-4966-8ecc-d89b5c4c94db.gif)
+
+iii) 단어 삭제
+![App-6_단어장 앱_단어 삭제](https://user-images.githubusercontent.com/87654809/217444605-809659de-e1e4-4fe5-acf8-83230ba2ee59.gif)
+
 ### 구현기능
 - 단어장 UI 구현
 - 단어 추가
@@ -442,3 +451,35 @@
 ### 한걸음 더
 - 이번에 구현한 방법과 다르게, RecyclerView 아이템 클릭 리스너로 구현해보기
 - 단어 추가 화면에서, 추가 버튼 클릭 시, 유효성 체크 해보기
+
+
+## App-7. 나만의 액자 앱
+
+### 구현기능
+- 권한 처리
+- 갤러리 이미지 가져오기
+- 여러가지 타입의 리스트 구현해보기
+
+### 학습 목표
+- 갤러리에 있는 이미지를 가져오고, 다양한 이미지를 UI 에 보여 줄 수 있다
+	- 갤러리에 있는 이미지를 가져오기 위한 권한 확인
+	- 갤러리에서 가져온 이미지를 리스트에 업데이트
+	- 다양한 타입의 아이템이 있는 리스트 구현
+	- 나만의 액자 UI 만들기
+	- 커스텀 툴바
+- UI
+	- RecyclerView, ListAdapter
+		- Multiple item type
+	- ViewPager2
+	- Toolbar
+	- selector, drawable
+- Kotlin
+	- seald class, data class
+- Android
+	- Permission
+	- Storage Access Framework
+	- registerForActivityResult
+
+### 한 걸음 더
+- drawable 을 이용해 다양한 도형을 그려보기
+- ListAdapter 와 RecyclerView.Adapter 의 차이에 대해 복습하기
