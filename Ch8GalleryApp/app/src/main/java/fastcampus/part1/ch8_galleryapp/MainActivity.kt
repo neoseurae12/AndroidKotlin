@@ -1,6 +1,7 @@
 package fastcampus.part1.ch8_galleryapp
 
 import android.Manifest.permission.READ_MEDIA_IMAGES
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import fastcampus.part1.ch8_galleryapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,14 +20,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var imageAdapter : ImageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbar.apply {
+            title = "사진 가져오기"
+            setSupportActionBar(this)
+        }
+
         binding.loadImageButton.setOnClickListener {
             checkPermission()
+        }
+
+        binding.toFrameActivityButton.setOnClickListener {
+            toFrameActivity()
+        }
+
+        initRecyclerView()
+    }
+
+    // connect Adapter to RecyclerView
+    private fun initRecyclerView() {
+        imageAdapter = ImageAdapter(object : ImageAdapter.ItemClickListener {
+            override fun onLoadMoreClick() {
+                checkPermission()
+            }
+        })
+
+        binding.imageRecyclerView.apply {
+            adapter = imageAdapter
+            layoutManager = GridLayoutManager(context, 2)
         }
     }
 
@@ -72,6 +100,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateImages(uriList: List<Uri>) {
         Log.d("updateImages", "$uriList")
+        val images = uriList.map { ImageItems.Image(it) }
+        val updatedImages = imageAdapter.currentList.toMutableList().apply { addAll(images) }   // add extra images on existing images
+        imageAdapter.submitList(updatedImages)
     }
 
     // As soon as you grant app permission, image loading screen appears
@@ -84,11 +115,19 @@ class MainActivity : AppCompatActivity() {
 
         when(requestCode) {
             REQUEST_READ_MEDIA_IMAGES -> {
-                if(grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
+                val resultCode = grantResults.firstOrNull() ?: PackageManager.PERMISSION_DENIED
+                if(resultCode == PackageManager.PERMISSION_GRANTED) {
                     loadImage()
                 }
             }
         }
+    }
+
+    private fun toFrameActivity() {
+        val images = imageAdapter.currentList.filterIsInstance<ImageItems.Image>().map { it.uri.toString() }.toTypedArray()
+        val intent = Intent(this, FrameActivity::class.java)
+            .putExtra("images", images)
+        startActivity(intent)
     }
 
     companion object {
