@@ -492,3 +492,28 @@ iii) 나만의 앨범
 ### 한 걸음 더
 - drawable 을 이용해 다양한 도형을 그려보기
 - ListAdapter 와 RecyclerView.Adapter 의 차이에 대해 복습하기
+
+
+## App-8. 음악재생 앱
+
+### 구현기능
+- 백그라운드에서 기능 실행
+- 음원 재생
+- 디바이스 이벤트 캐치 (네트워크 상태 변경, 전원 연결, 배터리 사용량 체크 등)
+
+### 학습목표
+- 백그라운드에서 앱의 기능을 사용하고, 디바이스 이벤트를 캐치할 수 있다.
+	- MediaPlayer 를 이용해 음원 재생
+	- Service 를 이용해 음원 재생
+	- Notificaion 에 음원 컨트롤러 제공
+	- BroadcastReceiver 를 이용해 LOW_BATTERY 이벤트 캐치
+- Android
+	- MediaPlayer
+	- Service
+	- Notification
+		- PendingIntent
+		- Intent flag
+	- BroadcastReceiver
+
+### 한 걸음 더
+- 안드로이드의 4대 컴포넌트에 대해 복습하기
