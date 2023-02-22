@@ -455,6 +455,15 @@ iii) 단어 삭제
 
 ## App-7. 나만의 액자 앱
 
+i) 권한 처리
+![App-7-1_나만의 액자 앱_권한 처리](https://user-images.githubusercontent.com/87654809/220659372-a3374eec-5695-432f-8783-347f79052cef.gif)
+
+ii) 사진 가져오기
+![App-7-2_나만의 액자 앱_사진 가져오기](https://user-images.githubusercontent.com/87654809/220659694-dbdbb57c-b7ed-44c8-85d4-8ef8fc02a40e.gif)
+
+iii) 나만의 앨범
+![App-7-3_나만의 액자 앱_나만의 앨범](https://user-images.githubusercontent.com/87654809/220659889-120f776f-a4ce-411a-8330-4a7d9939bb29.gif)
+
 ### 구현기능
 - 권한 처리
 - 갤러리 이미지 가져오기
