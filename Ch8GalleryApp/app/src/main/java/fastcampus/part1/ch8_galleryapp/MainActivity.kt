@@ -1,11 +1,13 @@
 package fastcampus.part1.ch8_galleryapp
 
-import android.Manifest.permission.READ_MEDIA_IMAGES
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +45,23 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_add -> {
+                checkPermission()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
     // connect Adapter to RecyclerView
     private fun initRecyclerView() {
         imageAdapter = ImageAdapter(object : ImageAdapter.ItemClickListener {
@@ -61,12 +80,12 @@ class MainActivity : AppCompatActivity() {
         when {
             ContextCompat.checkSelfPermission(
                 this,
-                READ_MEDIA_IMAGES
+                READ_EXTERNAL_STORAGE    // 수정
             ) == PackageManager.PERMISSION_GRANTED -> {
                 loadImage()
             }
 
-            shouldShowRequestPermissionRationale(READ_MEDIA_IMAGES) -> {
+            shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE) -> { // 수정
                 showPermissionInfoDialog()
             }
 
@@ -93,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     private fun requestReadMediaImages() {
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(READ_MEDIA_IMAGES),
+            arrayOf(READ_EXTERNAL_STORAGE),
             REQUEST_READ_MEDIA_IMAGES
         )
     }
