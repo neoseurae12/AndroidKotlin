@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import fastcampus.part1.ch9_musicplayerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -55,5 +56,10 @@ class MainActivity : AppCompatActivity() {
 //        mediaPlayer?.stop()
 //        mediaPlayer?.release()
 //        mediaPlayer = null
+    }
+
+    override fun onDestroy() {
+        stopService(Intent(this, MediaPlayerService::class.java))
+        super.onDestroy()
     }
 }
